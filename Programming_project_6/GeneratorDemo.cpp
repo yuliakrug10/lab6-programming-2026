@@ -5,7 +5,7 @@
 #include <optional>
 
 #include "InputReader.h"
-#include "OddNumberSuspendController.h"
+#include "OddNumberWait.h"
 
 int GeneratorDemo::run() {
     printIntroduction();
@@ -32,7 +32,7 @@ GeneratorTask GeneratorDemo::generateNumbers(NumberQueue& queue, RandomNumberGen
     for (int index = 0; index < numbersCount; ++index) {
         int number = generator.next();
         queue.push(number);
-        co_await OddNumberSuspendController(number);
+        co_await OddNumberWait(number);
     }
 }
 
